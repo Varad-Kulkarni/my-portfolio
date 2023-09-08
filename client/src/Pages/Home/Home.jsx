@@ -1,9 +1,20 @@
 import React from 'react'
 
+import './Home.css'
+
 const Home = () => {
   return (
     <div className='home'>
-      This is the home page...
+      <div className="outer-description">
+        <div className="description">
+          <div className="name">Varad Kedarrao Kulkarni</div>
+          <div className="role">Passionate Software Engineer</div>
+          <div className="buttons">
+            <div className="experience"><button>Explore my Experience</button></div>
+            <div className="contact-me"><button>Contact me</button></div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

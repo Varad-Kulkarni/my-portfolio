@@ -1,0 +1,48 @@
+.outer-description {
+    background-image: url('../../assets/Pictures/home-description-bg.jpg');
+    height: 95vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.description {
+    text-align: center;
+    padding-top: 35vh;
+}
+.description > .name {
+    font-weight: bold;
+    font-size: 40px;
+}
+.description > .role {
+    font-size: 20px;
+}
+
+.projects > .title {
+    font-weight: bold;
+    font-size: 27px;
+    padding-top: 9px;
+    padding-left: 9px;
+}
+.projects > .p4 {
+    text-align: center;
+    padding-top: 80px;
+}
+.projects > .p-content {
+    border: 1px solid black;
+    float: left;
+    height: 170px;
+    width: 350px;
+    padding: 3px;
+    margin: 3px;
+}
+.projects > .p4 > button {
+    border: none;
+    color: blue;
+}
+.projects > .p-content > .p-title {
+    font-size: 25px;
+}
+.projects > .p-content > .p-desc {
+    font-size: 15px;
+}

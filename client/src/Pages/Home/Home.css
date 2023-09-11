@@ -10,39 +10,84 @@
     text-align: center;
     padding-top: 35vh;
 }
-.description > .name {
+
+.description>.name {
     font-weight: bold;
     font-size: 40px;
 }
-.description > .role {
+
+.description>.role {
     font-size: 20px;
 }
 
-.projects > .title {
-    font-weight: bold;
-    font-size: 27px;
-    padding-top: 9px;
-    padding-left: 9px;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+    margin: 0 auto;
 }
-.projects > .p4 {
-    text-align: center;
-    padding-top: 80px;
-}
-.projects > .p-content {
-    border: 1px solid black;
-    float: left;
-    height: 170px;
-    width: 350px;
+
+.button {
+    margin-top: 10px;
     padding: 3px;
-    margin: 3px;
+    cursor: pointer;
 }
-.projects > .p4 > button {
+
+.button>button {
+    padding: 8px;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.button>button:hover {
+    color: white;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(5, 86, 183, 1) 34%, rgba(0, 172, 255, 1) 100%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    padding-bottom: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.box img {
+    max-width: 100%;
+    height: auto;
+}
+@media (max-width: 768px) {
+    .box {
+        width: 100%;
+    }
+}
+
+.h4-title {
+    height: 70px;
+    border-bottom: 1px solid rgb(186, 186, 186);
+    background-color: rgb(0, 140, 255);
+    padding-top: 10px;
+}
+.p-description {
+    margin-top: 5px;
+    padding: 10px;
+}
+.link-box {
     border: none;
-    color: blue;
 }
-.projects > .p-content > .p-title {
-    font-size: 25px;
+.link-h4-title {
+    border: none;
+    background-color: white;
 }
-.projects > .p-content > .p-desc {
-    font-size: 15px;
+.link-p-description {
+    border: none;
+    margin-top: 60px;
 }

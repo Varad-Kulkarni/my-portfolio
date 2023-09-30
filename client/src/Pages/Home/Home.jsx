@@ -52,7 +52,9 @@ const Home = () => {
       </div>
 
       <div className="projects-sec">
-        <h4 className="text-3xl m-5 font-extrabold dark:text-gray-600">Recent Projects</h4>
+        <h4 class="text-3xl font-normal leading-normal m-5 mt-9 mt-0 mb-2 text-zinc-800">
+          Recent Projects
+        </h4>
       </div>
       <div className="grid gap-5 lg:grid-cols-4 m-5">
         {posts.map((items, key) => (

@@ -53,7 +53,8 @@ const About = () => {
     <div className="about">
       <div className="experience">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
-          Experience
+          Experience                      
+          <button className="bg-sky-700"> + </button>
         </h4>
         {
           experience.map((key) => (

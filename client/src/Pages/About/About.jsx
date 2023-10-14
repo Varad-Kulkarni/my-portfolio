@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 const About = () => {
   let experience = [{
     title: "Software Engineer",
@@ -54,7 +56,7 @@ const About = () => {
       <div className="experience">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Experience                      
-          <button className="bg-sky-700"> + </button>
+          <button className="bg-sky-700"><Link to='/about/experience'> + </Link></button>
         </h4>
         {
           experience.map((key) => (

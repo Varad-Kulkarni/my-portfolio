@@ -1,26 +1,45 @@
 import React, { useState } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { addExperience } from '../../actions/about'
+import { addExperience, addEducation, addSkill, addAchievement } from '../../actions/about'
 
 const AddData = () => {
     const [title, setTitle] = useState('');
     const [company, setCompany] = useState('');
-    const [fromDate, setFromDate] = useState(Date.now());
-    const [toDate, setToDate] = useState(Date.now());
+    const [fromDate, setFromDate] = useState('');
+    const [toDate, setToDate] = useState('current');
     const [details, setDetails] = useState('');
     const [checked, setChecked] = useState(false);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation().pathname.slice(7);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log('before dispatcher')
-        dispatch(addExperience({ title, company, fromDate, toDate, details }, navigate))
+        switch(location) {
+            case 'experience':
+                dispatch(addExperience({ title, company, fromDate, toDate, details }, navigate))
+                break;
+
+            case 'education':
+                dispatch(addEducation({ institute: title, degree: company, marks: details, fromDate, toDate }, navigate))
+                break;
+
+            case 'skills':
+                dispatch(addSkill({ skill: details }, navigate))
+                break;
+
+            case 'achievements':
+                dispatch(addAchievement({ achievement: details }, navigate))
+                break;
+
+            default:
+                console.log("No valid path found...");
+        }
     }
 
     return (
@@ -29,27 +48,61 @@ const AddData = () => {
                 <div className="container mx-auto my-4 px-4 lg:px-20">
 
                     <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-40 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
-                        <div className="flex">
-                            <h1 className="font-bold uppercase text-5xl">Add Data for <br /> Experience</h1>
-                        </div>
-                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-                            <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                type="text" placeholder="*Add title" onChange={(e) => setTitle(e.target.value)} />
-                            <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                type="text" placeholder="*Add Company name" onChange={(e) => setCompany(e.target.value)} />
-                            <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                type="date" placeholder="*from date" onChange={(e) => setFromDate(e.target.value)} />
-                            <input className={checked ? "w-full bg-gray-100 text-gray-300 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" : 
-                            "w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"}
-                                type="date" placeholder="*to date" disabled={checked} onChange={(e) => setToDate(e.target.value)} />
-                        </div>
-                        <div className="my-4">
-                            <span className="ml-60 mr-5"><span className="text-red-500">*</span>Are you currently working in the company? </span>
-                            <input type="checkbox" placeholder="*details" className="h-3 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" onChange={(e) => setChecked(!checked)} />
-                        </div>
-                        <div className="my-4">
-                            <textarea placeholder="*details" className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" onChange={(e) => setDetails(e.target.value)}></textarea>
-                        </div>
+                        {
+                            (location === 'experience' || location === 'education') && (
+                                <>
+                                    <div className="flex">
+                                        <h1 className="font-bold uppercase text-5xl">Add Data for <br /> {location.toUpperCase()}</h1>
+                                    </div>
+                                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
+                                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                                            type="text" placeholder={location === 'experience' ? '*Add Title' : '*Add Institute'} onChange={(e) => setTitle(e.target.value)} />
+                                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                                            type="text" placeholder={location === 'experience' ? '*Add Company Name' : '*Add Degree Name'} onChange={(e) => setCompany(e.target.value)} />
+                                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                                            type="date" placeholder="*from date" onChange={(e) => setFromDate(e.target.value)} />
+                                        <input className={checked ? "w-full bg-gray-100 text-gray-300 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" :
+                                            "w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"}
+                                            type="date" placeholder="*to date" disabled={checked} onChange={(e) => setToDate(e.target.value)} />
+                                    </div>
+                                    <div className="my-4">
+                                        <span className="ml-60 mr-5"><span className="text-red-500">*</span>{location === 'experience' ? 'Are you currently working in the company?' : 'Are you doing education?'} </span>
+                                        <input type="checkbox" placeholder="*details" className="h-3 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" onChange={(e) => setChecked(!checked)} />
+                                    </div>
+                                </>
+                            )
+                        }
+                        {
+                            location === 'experience' && (
+                                <div className="my-4">
+                                    <textarea placeholder="*details" className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" onChange={(e) => setDetails(e.target.value)}></textarea>
+                                </div>
+                            )
+                        }
+                        {
+                            location === 'education' && (
+                                <>
+                                    <input className={checked ? "w-full bg-gray-100 text-gray-300 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" :
+                                        "w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"}
+                                        type="text" placeholder="*Marks Obtained" disabled={checked} onChange={(e) => setDetails(e.target.value)} /></>
+                            )
+                        }
+                        {
+                            location === 'skills' && (
+                                <>
+                                    <input className={checked ? "w-full bg-gray-100 text-gray-300 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" :
+                                        "w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"}
+                                        type="text" placeholder="*Add Skill" disabled={checked} onChange={(e) => setDetails(e.target.value)} /></>
+                            )
+                        }
+                        {
+                            location === 'achievements' && (
+                                <>
+                                    <input className={checked ? "w-full bg-gray-100 text-gray-300 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" :
+                                        "w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"}
+                                        type="text" placeholder="Add Achievement" disabled={checked} onChange={(e) => setDetails(e.target.value)} /></>
+                            )
+                        }
                         <div className="my-2 w-1/2 lg:w-1/4">
                             <button className="uppercase text-sm font-bold tracking-wide bg-purple-900 text-gray-100 p-3 rounded-lg w-full 
                       focus:outline-none focus:shadow-outline" onClick={handleSubmit}>

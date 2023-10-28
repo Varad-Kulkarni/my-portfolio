@@ -16,6 +16,9 @@ const AllRoutes = () => {
       <Route path='/projects' element = { <Projects/> } />
 
       <Route path='/about/experience' element = { <DataAdder/> } />
+      <Route path='/about/education' element = { <DataAdder/> } />
+      <Route path='/about/skills' element = { <DataAdder/> } />
+      <Route path='/about/achievements' element = { <DataAdder/> } />
     </Routes>
   )
 }

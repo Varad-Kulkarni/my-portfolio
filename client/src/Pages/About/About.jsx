@@ -75,6 +75,7 @@ const About = () => {
       <div className="education">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Education
+          <button className="bg-sky-700"><Link to='/about/education'> + </Link></button>
         </h4>
         {
           education.map((key) => (
@@ -94,6 +95,7 @@ const About = () => {
       <div className="skills">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Skills
+          <button className="bg-sky-700"><Link to='/about/skills'> + </Link></button>
         </h4>
         <div className="p-3 flex flex-row ...">
           {
@@ -106,6 +108,7 @@ const About = () => {
       <div className="achievements">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Achievements
+          <button className="bg-sky-700"><Link to='/about/achievements'> + </Link></button>
         </h4>
         <div className="p-3">
           {

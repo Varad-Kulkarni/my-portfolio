@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Projects = () => {
   const projects_arr = [{
@@ -25,6 +26,7 @@ const Projects = () => {
   }]
   return (
     <div>
+      <button><Link to='/projects/add'>Add</Link></button>
       {
         projects_arr.map((key) => (
           <div className="max-w-md h-auto mx-auto bg-white rounded-xl m-5 shadow-md overflow-hidden md:max-w-7xl">

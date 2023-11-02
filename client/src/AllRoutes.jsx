@@ -6,7 +6,6 @@ import About from './Pages/About/About'
 import Projects from './Pages/Projects/Projects'
 
 import DataFiller from './components/DataFiller/DataFiller'
-import DataAdder from './components/DataFiller/AddData'
 
 const AllRoutes = () => {
   return (
@@ -15,10 +14,12 @@ const AllRoutes = () => {
       <Route path='/about' element = { <About/> } />
       <Route path='/projects' element = { <Projects/> } />
 
-      <Route path='/about/experience' element = { <DataAdder/> } />
-      <Route path='/about/education' element = { <DataAdder/> } />
-      <Route path='/about/skills' element = { <DataAdder/> } />
-      <Route path='/about/achievements' element = { <DataAdder/> } />
+      <Route path='/about/experience' element = { <DataFiller/> } />
+      <Route path='/about/education' element = { <DataFiller/> } />
+      <Route path='/about/skills' element = { <DataFiller/> } />
+      <Route path='/about/achievements' element = { <DataFiller/> } />
+
+      <Route path='/projects/add' element = { <DataFiller /> } />
     </Routes>
   )
 }

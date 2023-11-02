@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { addExperience, addEducation, addSkill, addAchievement } from '../../actions/about'
+import { addProject } from '../../actions/projects'
 
 const DataFiller = () => {
     const [title, setTitle] = useState('');
@@ -12,10 +13,11 @@ const DataFiller = () => {
     const [toDate, setToDate] = useState('current');
     const [details, setDetails] = useState('');
     const [checked, setChecked] = useState(false);
+    const [tagsString, setTagsString] = useState('');
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const location = useLocation().pathname.slice(7);
+    const location = useLocation().pathname.slice(7);  //  about/somevalue or projects/somevalue
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,15 +42,17 @@ const DataFiller = () => {
             let dateFrom = new Date(fromDate).getTime();
             let dateTo = new Date(toDate).getTime();
 
-            if(toDate === 'current' && dateFrom > Date.now()) {
+            if (toDate === 'current' && dateFrom > Date.now()) {
                 alert('starting date should be less than today\'s date...');
                 return;
             }
-            else if(dateTo <= dateFrom) {
+            else if (dateTo <= dateFrom) {
                 alert('start date should be less than end date')
                 return;
             }
         }
+
+        let tags = tagsString.split('/ ')
 
         switch (location) {
             case 'experience':
@@ -67,6 +71,10 @@ const DataFiller = () => {
                 dispatch(addAchievement({ achievement: title }, navigate))
                 break;
 
+            case 'ts/add':
+                dispatch(addProject({ title, description: company, fromDate, toDate, details, tags }, navigate))
+                break;
+
             default:
                 console.log("No valid path found...");
         }
@@ -79,7 +87,7 @@ const DataFiller = () => {
                     <div class="w-full px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             {
-                                location === 'experience' && (
+                                (location === 'experience' || location === 'ts/add') && (
                                     <span>*Title</span>
                                 )
                             }
@@ -104,7 +112,7 @@ const DataFiller = () => {
                     </div>
                 </div>
                 {
-                    (location === 'experience' || location === 'education') && (
+                    (location === 'experience' || location === 'education' || location === 'ts/add') && (
                         <>
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full px-3">
@@ -117,6 +125,11 @@ const DataFiller = () => {
                                         {
                                             location === 'education' && (
                                                 <span>*Degree</span>
+                                            )
+                                        }
+                                        {
+                                            location === 'ts/add' && (
+                                                <span>*Description</span>
                                             )
                                         }
                                     </label>
@@ -143,7 +156,7 @@ const DataFiller = () => {
                                             <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="Date" onChange={(e) => setToDate(e.target.value)} />
                                         )
                                     }
-                                    <input class="block border rounded py-3 px-4 mb-3" id="email" type="checkbox" onChange={(e) => setChecked(!checked)} />{location === 'experience' ? <span>are you still working in this company?</span> : <span>are you still studing in this institute?</span>}
+                                    <input class="block border rounded py-3 px-4 mb-3" id="email" type="checkbox" onChange={(e) => setChecked(!checked)} />{location === 'experience' ? <span>are you still working in this company?</span> : (location === 'education' ? <span>are you still studing in this institute?</span> : <span>are you still worling on project?</span>)}
                                 </div>
                             </div>
                             {
@@ -160,13 +173,25 @@ const DataFiller = () => {
                                 )
                             }
                             {
-                                location === 'experience' && (
+                                (location === 'experience' || location === 'ts/add') && (
                                     <div class="flex flex-wrap -mx-3 mb-6">
                                         <div class="w-full px-3">
                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                                                 *Details
                                             </label>
                                             <textarea class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-20 resize-none" id="message" onChange={(e) => setDetails(e.target.value)}></textarea>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            {
+                                location === 'ts/add' && (
+                                    <div class="flex flex-wrap -mx-3 mb-6">
+                                        <div class="w-full px-3">
+                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                                                *Tags
+                                            </label>
+                                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="text" onChange={(e) => setTagsString(e.target.value)} />
                                         </div>
                                     </div>
                                 )

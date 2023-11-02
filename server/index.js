@@ -3,6 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 
 import aboutRouter from './routes/about.js'
+import projectRouter from './routes/project.js'
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/about', aboutRouter)
+app.use('/projects', projectRouter)
 
 const DATABASE_URL = "mongodb+srv://vkk3portfolio:adminPortfolio@cluster0.hhzbswi.mongodb.net/?retryWrites=true&w=majority"
 

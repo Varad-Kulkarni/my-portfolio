@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import aboutReducer from './aboutReducer';
+import projectReducer from './projectReducer';
+import experienceReducer from './experienceReducer';
+import educationReducer from './educationReducer';
+import skillsReducer from './skillsReducer';
+import achievementsReducer from './achievementsReducer';
 
 export default combineReducers({
-    aboutReducer
+    projectReducer, experienceReducer, educationReducer, skillsReducer, achievementsReducer
 })

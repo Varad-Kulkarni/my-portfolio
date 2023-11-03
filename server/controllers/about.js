@@ -18,6 +18,18 @@ export const addExperience = async(req, res) => {
     }
 }
 
+export const getAllExperience = async(req, res) => {
+    try {
+        const experienceData = await Experience.find()
+        res.status(200).json(experienceData)
+        console.log('Experience data fetched successfully...')
+    }
+    catch(err) {
+        res.status(400).json({message: err.message})
+        console.log(err)
+    }
+}
+
 
 export const addEducation = async(req, res) => {
     const educationData = req.body;
@@ -30,6 +42,18 @@ export const addEducation = async(req, res) => {
     }
     catch(err) {
         console.log(err);
+    }
+}
+
+export const getAllEducation = async(req, res) => {
+    try {
+        const educationData = await Education.find();
+        res.status(200).json(educationData)
+        console.log('Education data fetched successfully...')
+    }
+    catch(err) {
+        res.status(400).json({message: err.message})
+        console.log(err)
     }
 }
 
@@ -48,6 +72,18 @@ export const addSkill = async(req, res) => {
     }
 }
 
+export const getAllSkills = async(req, res) => {
+    try {
+        const skillsData = await Skills.find();
+        res.status(200).json(skillsData)
+        console.log('Skills data fetched successfully...');
+    }
+    catch(err) {
+        res.status(200).json({message: err.message})
+        console.log(err)
+    }
+}
+
 
 export const addAchievement = async(req, res) => {
     const achievementData = req.body;
@@ -60,5 +96,17 @@ export const addAchievement = async(req, res) => {
     }
     catch(err) {
         console.log(err);
+    }
+}
+
+export const getAllAchievements = async(req, res) => {
+    try {
+        const achievementsData = await Achievements.find();
+        res.status(200).json(achievementsData)
+        console.log('Achievements data fetched successfully...');
+    }
+    catch(err) {
+        res.status(400).json({message: err.message})
+        console.log(err)
     }
 }

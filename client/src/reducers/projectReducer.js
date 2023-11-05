@@ -3,6 +3,9 @@ const projectReducer = (state = {data: null}, action) => {
         case 'ADD_PROJECT':
             return { ...state }
 
+        case 'FETCH_ALL_PROJECTS':
+            return { ...state, data: action.payload };
+
         default:
         return state
     }

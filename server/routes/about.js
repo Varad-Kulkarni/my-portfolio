@@ -9,7 +9,7 @@ router.post('/education', addEducation)
 router.post('/skills', addSkill)
 router.post('/achievements', addAchievement)
 
-router.get("/getexperience", getAllExperience)
+router.get('/getexperience', getAllExperience)
 router.get('/geteducation', getAllEducation)
 router.get('/getskills', getAllSkills)
 router.get('/getachievements', getAllAchievements)

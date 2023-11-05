@@ -3,6 +3,9 @@ const achievementsReducer = (state = {data: null}, action) => {
         case 'ADD_ACHIEVEMENT':
             return { ...state };
 
+        case 'FETCH_ALL_ACHIEVEMENTS':
+            return { ...state, data: action.payload };
+
         default: 
         return state;
     }

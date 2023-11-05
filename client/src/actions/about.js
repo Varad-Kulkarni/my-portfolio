@@ -27,6 +27,7 @@ export const addEducation = (educationData, navigate) => async(dispatch) => {
     try {
         const { data } = await api.addEducation(educationData);
         dispatch({ type: 'ADD_EDUCATION', payload: data });
+        dispatch(getAllEducation())
         navigate('/about');
     }
     catch(err) {
@@ -48,6 +49,7 @@ export const addSkill = (skillData, navigate) => async(dispatch) => {
     try {
         const { data } = await api.addSkill(skillData);
         dispatch({ type: 'ADD_SKILL', payload: data });
+        dispatch(getAllSkills())
         navigate('/about');
     }
     catch(err) {
@@ -69,6 +71,7 @@ export const addAchievement = (achievementData, navigate) => async(dispatch) => 
     try {
         const { data } = await api.addAchievement(achievementData);
         dispatch({ type: 'ADD_ACHIEVEMENT', payload: data });
+        dispatch(getAllAchievements())
         navigate('/about');
     }
     catch(err) {

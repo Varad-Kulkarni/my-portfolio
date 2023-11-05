@@ -69,17 +69,22 @@ const About = () => {
           experience.data === null ? <h1 className="text-3xl">Loading...</h1> :
             <>
               {
-                experience.data.map((key) => (
-                  <div className="container mx-auto bg-purple-50 rounded-xl shadow border p-4 m-3">
-                    <p className="text-2xl text-gray-700 font-bold">
-                      {key.title} at <span className="text-1xl text-purple-500">{key.company}</span>
-                    </p>
-                    <p className="text-1xl mb-2"> <span>{key.fromDate}</span> - <span>{key.toDate}</span></p>
-                    <p className="text-gray-500 text-lg">
-                      <pre>{key.details}</pre>
-                    </p>
-                  </div>
-                ))
+                experience.data.length === 0 ? <h1 className="text-3xl">No data to display...</h1> :
+                  <>
+                    {
+                      experience.data.map((key) => (
+                        <div className="container mx-auto bg-purple-50 rounded-xl shadow border p-4 m-3">
+                          <p className="text-2xl text-gray-700 font-bold">
+                            {key.title} at <span className="text-1xl text-purple-500">{key.company}</span>
+                          </p>
+                          <p className="text-1xl mb-2"> <span>{key.fromDate}</span> - <span>{key.toDate}</span></p>
+                          <p className="text-gray-500 text-lg">
+                            <pre>{key.details}</pre>
+                          </p>
+                        </div>
+                      ))
+                    }
+                  </>
               }
             </>
         }
@@ -93,18 +98,23 @@ const About = () => {
           education.data === null ? <h1 className='text-3xl'>Loading...</h1> :
             <>
               {
-                education.data.map((key) => (
-                  <div className="container mx-auto bg-purple-50 rounded-xl shadow border p-4 m-3">
-                    <p className="text-2xl text-purple-500 font-bold">
-                      {key.institute}
-                    </p>
-                    <p className="text-1xl mb-2"> <span>{key.fromDate}</span> - <span>{key.toDate}</span></p>
-                    <p className="text-gray-500 text-lg">
-                      <pre>Degree = {key.degree}</pre>
-                      <pre>Total Marks = {key.marks}</pre>
-                    </p>
-                  </div>
-                ))
+                education.data.length === 0 ? <h1 className='text-3xl'>No data to display...</h1> :
+                  <>
+                    {
+                      education.data.map((key) => (
+                        <div className="container mx-auto bg-purple-50 rounded-xl shadow border p-4 m-3">
+                          <p className="text-2xl text-purple-500 font-bold">
+                            {key.institute}
+                          </p>
+                          <p className="text-1xl mb-2"> <span>{key.fromDate}</span> - <span>{key.toDate}</span></p>
+                          <p className="text-gray-500 text-lg">
+                            <pre>Degree = {key.degree}</pre>
+                            <pre>Total Marks = {key.marks}</pre>
+                          </p>
+                        </div>
+                      ))
+                    }
+                  </>
               }
             </>
         }
@@ -119,9 +129,14 @@ const About = () => {
             skills.data === null ? <h1 className='text-3xl'>Loading...</h1> :
               <>
                 {
-                  skills.data.map((key) => (
-                    <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">{key.skill}</div>
-                  ))
+                  skills.data.length === 0 ? <h1 className='text-3xl'>No data to display...</h1> :
+                    <>
+                      {
+                        skills.data.map((key) => (
+                          <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">{key.skill}</div>
+                        ))
+                      }
+                    </>
                 }
               </>
           }
@@ -137,9 +152,14 @@ const About = () => {
             achievements.data === null ? <h1 className='text-3xl'>Loading...</h1> :
               <>
                 {
-                  achievements.data.map((key) => (
-                    <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">{key.achievement}</div>
-                  ))
+                  achievements.data.length === 0 ? <h1 className='text-3xl'>No data to display...</h1> :
+                    <>
+                      {
+                        achievements.data.map((key) => (
+                          <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">{key.achievement}</div>
+                        ))
+                      }
+                    </>
                 }
               </>
           }

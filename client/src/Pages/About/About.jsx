@@ -4,59 +4,10 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const About = () => {
-  // let experience = [{
-  //   title: "Software Engineer",
-  //   company: "Siemens",
-  //   fromDate: "03/03/2023",
-  //   toDate: "current",
-  //   details: " 1) Work on the product teamcenter \n 2) Work on the python \n 3) Work on product to update from one version to anathor"
-  // }, {
-  //   title: "Software Engineer",
-  //   company: "Siemens",
-  //   fromDate: "03/03/2023",
-  //   toDate: "current",
-  //   details: " 1) Work on the product teamcenter \n 2) Work on the python \n 3) Work on product to update from one version to anathor"
-  // }, {
-  //   title: "Software Engineer",
-  //   company: "Siemens",
-  //   fromDate: "03/03/2023",
-  //   toDate: "current",
-  //   details: " 1) Work on the product teamcenter \n 2) Work on the python \n 3) Work on product to update from one version to anathor"
-  // }]
-  // let skills = {data: null}
-  // let achievements = {data: null}
   let experience = useSelector(state => state.experienceReducer)
   let education = useSelector(state => state.educationReducer)
   let skills = useSelector(state => state.skillsReducer)
   let achievements = useSelector(state => state.achievementsReducer)
-
-  // const education = [{
-  //   institute: "Government College of Engineering, Aurangabad",
-  //   degree: "B. Tech",
-  //   marks: "8.1 CGPA",
-  //   fromDate: "08/2019",
-  //   toDate: "08/2023",
-  // }, {
-  //   institute: "Kulbhushan Junior College, Aurangabad",
-  //   degree: "Science",
-  //   marks: "96.96 percentile in MHT-CET",
-  //   fromDate: "07/2017",
-  //   toDate: "04/2019",
-  // }, {
-  //   institute: "Pioneers Secondary School, Aurangabad",
-  //   degree: "School",
-  //   marks: "90.8% in 10th",
-  //   fromDate: "2006",
-  //   toDate: "2017",
-  // }]
-
-  // const skills = ["Java", "Javascript", "DSA", "Python", "Problem Solving", "Web Development", "ReactJs"]
-
-  // const achievements = [
-  //   "This is sample achievement",
-  //   "This is sample achievement",
-  //   "This is sample achievement"
-  // ]
 
   return (
     <div className="about">
@@ -124,7 +75,7 @@ const About = () => {
           Skills
           <button className="bg-sky-700"><Link to='/about/skills'> + </Link></button>
         </h4>
-        <div className="p-3 flex flex-row ...">
+        <div className="p-3 flex flex-row ... max-w-full overflow-x-auto">
           {
             skills.data === null ? <h1 className='text-3xl'>Loading...</h1> :
               <>

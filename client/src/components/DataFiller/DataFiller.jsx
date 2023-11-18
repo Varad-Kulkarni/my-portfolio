@@ -81,7 +81,7 @@ const DataFiller = () => {
     }
 
     return (
-        <div className="h-screen flex items-center justify-center">
+        <div className="h-screen flex items-center justify-center max-h-full overflow-y-auto max-w-full overflow-x-auto m-5">
             <form class="w-full max-w-lg">
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">

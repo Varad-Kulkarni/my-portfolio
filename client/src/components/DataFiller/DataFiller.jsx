@@ -14,6 +14,7 @@ const DataFiller = () => {
     const [details, setDetails] = useState('');
     const [checked, setChecked] = useState(false);
     const [tagsString, setTagsString] = useState('');
+    const [description, setDescription] = useState('')
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const DataFiller = () => {
                 break;
 
             case 'education':
-                dispatch(addEducation({ institute: title, degree: company, marks: details, fromDate, toDate }, navigate))
+                dispatch(addEducation({ institute: title, degree: company, marks: description, fromDate, toDate, description: details }, navigate))
                 break;
 
             case 'skills':
@@ -166,14 +167,14 @@ const DataFiller = () => {
                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                                                 *Marks
                                             </label>
-                                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="number" onChange={(e) => setDetails(e.target.value)} />
+                                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="text" onChange={(e) => setDescription(e.target.value)} />
                                             <p class="text-gray-600 text-xs italic">Some tips - as long as needed</p>
                                         </div>
                                     </div>
                                 )
                             }
                             {
-                                (location === 'experience' || location === 'ts/add') && (
+                                (location === 'experience' || location === 'ts/add' || location == 'education') && (
                                     <div class="flex flex-wrap -mx-3 mb-6">
                                         <div class="w-full px-3">
                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">

@@ -5,7 +5,8 @@ const educationSchema = mongoose.Schema({
     degree: {type: String, require: true},
     marks: {type: String, require: true},
     fromDate: {type: String, require: true},
-    toDate: {type: String, require: true}
+    toDate: {type: String, require: true},
+    description: {type: String, require: true}
 })
 
 export default mongoose.model('Education', educationSchema);

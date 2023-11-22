@@ -14,7 +14,7 @@ const About = () => {
       <div className="experience">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Experience
-          <button className="bg-sky-700"><Link to='/about/experience'> + </Link></button>
+          <button className="bg-sky-700 font-sm hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/experience'> Add </Link></button>
         </h4>
         {
           experience.data === null ? <h1 className="text-3xl">Loading...</h1> :
@@ -29,7 +29,7 @@ const About = () => {
                             {key.title} at <span className="text-1xl text-purple-500">{key.company}</span>
                           </p>
                           <p className="text-1xl mb-2"> <span>{key.fromDate}</span> - <span>{key.toDate}</span></p>
-                          <p className="text-gray-500 text-lg">
+                          <p className="text-gray-500 text-lg max-w-full overflow-x-auto">
                             <pre>{key.details}</pre>
                           </p>
                         </div>
@@ -43,7 +43,7 @@ const About = () => {
       <div className="education">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Education
-          <button className="bg-sky-700"><Link to='/about/education'> + </Link></button>
+          <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/education'> Add </Link></button>
         </h4>
         {
           education.data === null ? <h1 className='text-3xl'>Loading...</h1> :
@@ -61,6 +61,9 @@ const About = () => {
                           <p className="text-gray-500 text-lg">
                             <pre>Degree = {key.degree}</pre>
                             <pre>Total Marks = {key.marks}</pre>
+                            <pre>Details: 
+                              {key.description}
+                            </pre>
                           </p>
                         </div>
                       ))
@@ -73,7 +76,7 @@ const About = () => {
       <div className="skills">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Skills
-          <button className="bg-sky-700"><Link to='/about/skills'> + </Link></button>
+          <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/skills'> Add </Link></button>
         </h4>
         <div className="p-3 flex flex-row ... max-w-full overflow-x-auto">
           {
@@ -96,7 +99,7 @@ const About = () => {
       <div className="achievements">
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Achievements
-          <button className="bg-sky-700"><Link to='/about/achievements'> + </Link></button>
+          <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/achievements'> Add </Link></button>
         </h4>
         <div className="p-3">
           {

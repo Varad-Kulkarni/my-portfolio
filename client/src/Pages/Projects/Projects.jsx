@@ -6,7 +6,7 @@ const Projects = () => {
   const projects = useSelector(state => state.projectReducer)
   return (
     <div>
-      <button><Link to='/projects/add'>Add</Link></button>
+      <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/projects/add'>Add</Link></button>
       {
         projects.data === null ? <h1 className="text-3xl">Loading...</h1> :
           <>

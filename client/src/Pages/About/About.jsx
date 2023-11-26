@@ -1,13 +1,41 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { deleteExperience, deleteEducation, deleteSkill, deleteAchievement } from '../../actions/about'
 
 const About = () => {
-  let experience = useSelector(state => state.experienceReducer)
-  let education = useSelector(state => state.educationReducer)
-  let skills = useSelector(state => state.skillsReducer)
-  let achievements = useSelector(state => state.achievementsReducer)
+  const experience = useSelector(state => state.experienceReducer)
+  const education = useSelector(state => state.educationReducer)
+  const skills = useSelector(state => state.skillsReducer)
+  const achievements = useSelector(state => state.achievementsReducer)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleDelete = (type, id) => {
+    switch(type) {
+      case 'experience':
+        dispatch(deleteExperience(id, navigate))
+        break;
+
+      case 'education':
+        dispatch(deleteEducation(id, navigate))
+        break;
+
+      case 'skill':
+        dispatch(deleteSkill(id, navigate))
+        break;
+
+      case 'achievement':
+        dispatch(deleteAchievement(id, navigate))
+        break;
+
+      default:
+        console.log(`choose correct type...you choosen ${type}`)
+    }
+  } 
 
   return (
     <div className="about">
@@ -32,6 +60,8 @@ const About = () => {
                           <p className="text-gray-500 text-lg max-w-full overflow-x-auto">
                             <pre>{key.details}</pre>
                           </p>
+                          <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full'>edit</button>
+                          <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('experience', key._id)}}>delete</button>
                         </div>
                       ))
                     }
@@ -65,6 +95,8 @@ const About = () => {
                               {key.description}
                             </pre>
                           </p>
+                          <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full'>edit</button>
+                          <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('education', key._id)}}>delete</button>
                         </div>
                       ))
                     }
@@ -87,7 +119,11 @@ const About = () => {
                     <>
                       {
                         skills.data.map((key) => (
-                          <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">{key.skill}</div>
+                          <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">
+                            {key.skill}
+                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-1 px-1 rounded-full'>e</button>
+                            <button className='bg-red-700 hover:bg-red-900 text-white mx-1 px-1 rounded-full' onClick={() => {handleDelete('skill', key._id)}}>-</button>
+                          </div>
                         ))
                       }
                     </>
@@ -110,7 +146,11 @@ const About = () => {
                     <>
                       {
                         achievements.data.map((key) => (
-                          <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">{key.achievement}</div>
+                          <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">
+                            {key.achievement}
+                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full'>edit</button>
+                            <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('achievement', key._id)}}>delete</button>
+                          </div>
                         ))
                       }
                     </>

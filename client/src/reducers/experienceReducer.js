@@ -6,6 +6,9 @@ const experienceReducer = (state = {data: null}, action) => {
         case 'FETCH_ALL_EXPERIENCE':
             return { ...state, data: action.payload };
 
+        case 'DELETE_EXPERIENCE':
+            return { ...state }
+
         default: 
         return state;
     }

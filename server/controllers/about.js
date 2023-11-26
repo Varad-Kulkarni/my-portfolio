@@ -1,3 +1,5 @@
+import mongoose from 'mongoose'
+
 import Experience from '../models/experience.js'
 import Education from '../models/education.js'
 import Skills from '../models/skills.js'
@@ -29,6 +31,23 @@ export const getAllExperience = async(req, res) => {
     }
 }
 
+export const deleteExperience = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested experience not found...")
+    }
+
+    try {
+        await Experience.findByIdAndRemove(_id)
+        res.status(200).json('experience deleted successfully...')
+        console.log(`experience of id ${_id} added succesfully...`)
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
 
 export const addEducation = async(req, res) => {
     const educationData = req.body;
@@ -51,6 +70,23 @@ export const getAllEducation = async(req, res) => {
     }
     catch(err) {
         res.status(400).json({message: err.message})
+        console.log(err)
+    }
+}
+
+export const deleteEducation = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested education not found...")
+    }
+
+    try {
+        await Education.findByIdAndRemove(_id)
+        res.status(200).json('education deleted successfully...')
+        console.log(`education of id ${_id} deleted successfully...`)
+    }
+    catch(err) {
         console.log(err)
     }
 }
@@ -81,6 +117,23 @@ export const getAllSkills = async(req, res) => {
     }
 }
 
+export const deleteSkill = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested skill not found...")
+    }
+
+    try {
+        await Skills.findByIdAndRemove(_id)
+        res.status(200).json('skill deleted successfully...')
+        console.log(`skill of id ${_id} deleted successfully...`)
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
 
 export const addAchievement = async(req, res) => {
     const achievementData = req.body;
@@ -89,7 +142,7 @@ export const addAchievement = async(req, res) => {
     try {
         await achievementValue.save();
         res.status(200).json("Achievement added successfully...");
-        console.log("Achievement added succesfully...")
+        console.log('achievement added successfully...')
     }
     catch(err) {
         console.log(err);
@@ -103,6 +156,23 @@ export const getAllAchievements = async(req, res) => {
     }
     catch(err) {
         res.status(400).json({message: err.message})
+        console.log(err)
+    }
+}
+
+export const deleteAchievement = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested achievement not found...")
+    }
+
+    try {
+        await Achievements.findByIdAndRemove(_id)
+        res.status(200).json('achievement deleted successfully...')
+        console.log(`achievement of id ${_id} added succesfully...`)
+    }
+    catch(err) {
         console.log(err)
     }
 }

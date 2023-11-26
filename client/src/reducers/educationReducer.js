@@ -6,6 +6,9 @@ const educationReducer = (state = {data: null}, action) => {
         case 'FETCH_ALL_EDUCATION':
             return { ...state, data: action.payload };
 
+        case 'DELETE_EDUCATION':
+            return { ...state }
+
         default: 
         return state;
     }

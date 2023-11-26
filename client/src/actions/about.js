@@ -23,6 +23,18 @@ export const getAllExperience = () => async(dispatch) => {
     }
 }
 
+export const deleteExperience = (id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.deleteExperience(id);
+        dispatch({ type: 'DELETE_EXPERIENCE', payload: data })
+        dispatch(getAllExperience())
+        navigate('/about')
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
 export const addEducation = (educationData, navigate) => async(dispatch) => {
     try {
         const { data } = await api.addEducation(educationData);
@@ -39,6 +51,18 @@ export const getAllEducation = () => async(dispatch) => {
     try {
         const { data } = await api.getAllEducation();
         dispatch({ type: 'FETCH_ALL_EDUCATION', payload: data })
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+export const deleteEducation = (id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.deleteEducation(id);
+        dispatch({ type: 'DELETE_EDUCATION', payload: data })
+        dispatch(getAllEducation())
+        navigate('/about')
     }
     catch(err) {
         console.log(err)
@@ -67,6 +91,18 @@ export const getAllSkills = () => async(dispatch) => {
     }
 }
 
+export const deleteSkill = (id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.deleteSkill(id);
+        dispatch({ type: 'DELETE_SKILL', payload: data })
+        dispatch(getAllSkills())
+        navigate('/about')
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
 export const addAchievement = (achievementData, navigate) => async(dispatch) => {
     try {
         const { data } = await api.addAchievement(achievementData);
@@ -83,6 +119,18 @@ export const getAllAchievements = () => async(dispatch) => {
     try {
         const { data } = await api.getAllAchievements()
         dispatch({ type: 'FETCH_ALL_ACHIEVEMENTS', payload: data })
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+export const deleteAchievement = (id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.deleteAchievement(id);
+        dispatch({ type: 'DELETE_ACHIEVEMENT', payload: data })
+        dispatch(getAllAchievements())
+        navigate('/about')
     }
     catch(err) {
         console.log(err)

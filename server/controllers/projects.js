@@ -24,3 +24,19 @@ export const getAllProjects = async(req, res) => {
         console.log(err);
     }
 }
+
+export const deleteProject = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested project not found...")
+    }
+
+    try {
+        await Projects.findByIdAndRemove(_id)
+        res.status(200).json('project deleted successfully...')
+    }
+    catch(err) {
+        console.log(err)
+    }
+}

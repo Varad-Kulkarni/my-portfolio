@@ -48,6 +48,23 @@ export const deleteExperience = async(req, res) => {
     }
 }
 
+export const editExperience = async(req, res) => {
+    const { id:_id } = req.params
+    const { title, company, fromDate, toDate, details } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('experience unavailable...')
+    }
+    
+    try {
+        const updatedExperience = await Experience.findByIdAndUpdate( _id, { $set: { 'title': title, 'company': company, 'fromDate': fromDate, 'toDate': toDate, 'details': details }}, { new: true })
+        res.status(200).json(updatedExperience)
+        console.log('experience updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
+    }
+}
 
 export const addEducation = async(req, res) => {
     const educationData = req.body;
@@ -88,6 +105,24 @@ export const deleteEducation = async(req, res) => {
     }
     catch(err) {
         console.log(err)
+    }
+}
+
+export const editEducation = async(req, res) => {
+    const { id:_id } = req.params
+    const { institute, degree, marks, fromDate, toDate, description } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('education unavailable...')
+    }
+    
+    try {
+        const updatedEducation = await Education.findByIdAndUpdate( _id, { $set: { 'institute': institute, 'degree': degree, 'marks': marks, 'fromDate': fromDate, 'toDate': toDate, 'description': description }}, { new: true })
+        res.status(200).json(updatedEducation)
+        console.log('education updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
     }
 }
 
@@ -134,6 +169,24 @@ export const deleteSkill = async(req, res) => {
     }
 }
 
+export const editSkills = async(req, res) => {
+    const { id:_id } = req.params
+    const { skill } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('experience unavailable...')
+    }
+    
+    try {
+        const updatedSkill = await Skills.findByIdAndUpdate( _id, { $set: { 'skill': skill }}, { new: true })
+        res.status(200).json(updatedSkill)
+        console.log('skill updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
+    }
+}
+
 
 export const addAchievement = async(req, res) => {
     const achievementData = req.body;
@@ -174,5 +227,23 @@ export const deleteAchievement = async(req, res) => {
     }
     catch(err) {
         console.log(err)
+    }
+}
+
+export const editAchievement = async(req, res) => {
+    const { id:_id } = req.params
+    const { achievement } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('achievement unavailable...')
+    }
+    
+    try {
+        const updatedAchievement = await Achievements.findByIdAndUpdate( _id, { $set: { 'achievement': achievement }}, { new: true })
+        res.status(200).json(updatedAchievement)
+        console.log('achievement updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
     }
 }

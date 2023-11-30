@@ -35,6 +35,18 @@ export const deleteExperience = (id, navigate) => async(dispatch) => {
     }
 }
 
+export const editExperience = (experienceData, id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.editExperience(experienceData, id);
+        dispatch({ type: 'EDIT_EXPERIENCE', payload: data });
+        dispatch(getAllExperience())
+        navigate('/about');
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
 export const addEducation = (educationData, navigate) => async(dispatch) => {
     try {
         const { data } = await api.addEducation(educationData);
@@ -66,6 +78,18 @@ export const deleteEducation = (id, navigate) => async(dispatch) => {
     }
     catch(err) {
         console.log(err)
+    }
+}
+
+export const editEducation = (educationData, id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.editEducation(educationData, id);
+        dispatch({ type: 'EDIT_EDUCATION', payload: data });
+        dispatch(getAllEducation())
+        navigate('/about');
+    }
+    catch(err) {
+        console.log(err);
     }
 }
 
@@ -103,6 +127,18 @@ export const deleteSkill = (id, navigate) => async(dispatch) => {
     }
 }
 
+export const editSkill = (skillData, id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.editSkill(skillData, id);
+        dispatch({ type: 'EDIT_SKILL', payload: data });
+        dispatch(getAllSkills())
+        navigate('/about');
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
 export const addAchievement = (achievementData, navigate) => async(dispatch) => {
     try {
         const { data } = await api.addAchievement(achievementData);
@@ -134,5 +170,17 @@ export const deleteAchievement = (id, navigate) => async(dispatch) => {
     }
     catch(err) {
         console.log(err)
+    }
+}
+
+export const editAchievement = (achievementData, id, navigate) => async(dispatch) => {
+    try {
+        const { data } = await api.editAchievement(achievementData, id);
+        dispatch({ type: 'EDIT_ACHIEVEMENT', payload: data });
+        dispatch(getAllAchievements())
+        navigate('/about');
+    }
+    catch(err) {
+        console.log(err);
     }
 }

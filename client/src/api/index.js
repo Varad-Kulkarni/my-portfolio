@@ -17,6 +17,12 @@ export const deleteEducation = (id) => API.delete(`/about/deleteeducation/${id}`
 export const deleteSkill = (id) => API.delete(`/about/deleteskill/${id}`)
 export const deleteAchievement = (id) => API.delete(`/about/deleteachievement/${id}`)
 
+export const editExperience = (experienceData, id) => API.post(`/about/editexperience/${id}`, experienceData)
+export const editEducation = (educationData, id) => API.post(`/about/editeducation/${id}`, educationData)
+export const editSkill = (skillData, id) => API.post(`/about/editskills/${id}`, skillData)
+export const editAchievement = (achievementData, id) => API.post(`/about/editachievements/${id}`, achievementData)
+
 export const addProject = (projectData) => API.post('/projects/add', projectData)
 export const getAllProjects = () => API.get('/projects/get')
 export const deleteProject = (id) => API.delete(`/projects/delete/${id}`)
+export const editProject = (projectData, id) => API.post(`/projects/edit/${id}`, projectData)

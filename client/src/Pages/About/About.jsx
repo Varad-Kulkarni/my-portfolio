@@ -35,7 +35,30 @@ const About = () => {
       default:
         console.log(`choose correct type...you choosen ${type}`)
     }
-  } 
+  }
+  
+  const handleEdit = (type, key) => {
+    switch(type) {
+      case 'experience':
+        navigate('/about/experience', { state: { key, type }})
+        break;
+
+      case 'education':
+        navigate('/about/education', { state: { key, type }})
+        break;
+
+      case 'skills':
+        navigate('/about/skills', { state: { key, type }})
+        break;
+
+      case 'achievements':
+        navigate('/about/achievements', { state: { key, type }})
+        break;
+
+      default:
+        console.log('no options selected...')
+    }
+  }
 
   return (
     <div className="about">
@@ -60,7 +83,7 @@ const About = () => {
                           <p className="text-gray-500 text-lg max-w-full overflow-x-auto">
                             <pre>{key.details}</pre>
                           </p>
-                          <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full'>edit</button>
+                          <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => handleEdit('experience', key)}>edit</button>
                           <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('experience', key._id)}}>delete</button>
                         </div>
                       ))
@@ -95,7 +118,7 @@ const About = () => {
                               {key.description}
                             </pre>
                           </p>
-                          <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full'>edit</button>
+                          <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleEdit('education', key)}}>edit</button>
                           <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('education', key._id)}}>delete</button>
                         </div>
                       ))
@@ -121,7 +144,7 @@ const About = () => {
                         skills.data.map((key) => (
                           <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">
                             {key.skill}
-                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-1 px-1 rounded-full'>e</button>
+                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-1 px-1 rounded-full' onClick={() => {handleEdit('skills', key)}}>e</button>
                             <button className='bg-red-700 hover:bg-red-900 text-white mx-1 px-1 rounded-full' onClick={() => {handleDelete('skill', key._id)}}>-</button>
                           </div>
                         ))
@@ -148,7 +171,7 @@ const About = () => {
                         achievements.data.map((key) => (
                           <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">
                             {key.achievement}
-                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full'>edit</button>
+                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleEdit('achievements', key)}}>edit</button>
                             <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('achievement', key._id)}}>delete</button>
                           </div>
                         ))

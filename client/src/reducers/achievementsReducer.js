@@ -9,6 +9,9 @@ const achievementsReducer = (state = {data: null}, action) => {
         case 'DELETE_ACHIEVEMENT':
             return { ...state }
 
+        case 'EDIT_ACHIEVEMENT':
+            return { ...state };
+
         default: 
         return state;
     }

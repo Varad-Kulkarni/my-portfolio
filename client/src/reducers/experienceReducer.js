@@ -9,6 +9,9 @@ const experienceReducer = (state = {data: null}, action) => {
         case 'DELETE_EXPERIENCE':
             return { ...state }
 
+        case 'EDIT_EXPERIENCE':
+            return { ...state }
+
         default: 
         return state;
     }

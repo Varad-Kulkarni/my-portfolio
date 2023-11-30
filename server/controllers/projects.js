@@ -1,4 +1,5 @@
 import Projects from '../models/projects.js'
+import mongoose from 'mongoose'
 
 export const addProject = async(req, res) => {
     const projectData = req.body
@@ -38,5 +39,23 @@ export const deleteProject = async(req, res) => {
     }
     catch(err) {
         console.log(err)
+    }
+}
+
+export const editProjects = async(req, res) => {
+    const { id:_id } = req.params
+    const { title, description, fromDate, toDate, details, tags } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('projects unavailable...')
+    }
+    
+    try {
+        const updatedProjects = await Projects.findByIdAndUpdate( _id, { $set: { 'title': title, 'description': description, 'fromDate': fromDate, 'toDate': toDate, 'details': details, 'tags': tags }}, { new: true })
+        res.status(200).json(updatedProjects)
+        console.log('projects updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
     }
 }

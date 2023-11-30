@@ -9,6 +9,9 @@ const skillsReducer = (state = {data: null}, action) => {
         case 'DELETE_SKILL':
             return { ...state }
 
+        case 'EDIT_SKILL':
+            return { ...state }
+
         default: 
         return state;
     }

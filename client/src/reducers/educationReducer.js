@@ -9,6 +9,9 @@ const educationReducer = (state = {data: null}, action) => {
         case 'DELETE_EDUCATION':
             return { ...state }
 
+        case 'EDIT_EDUCATION':
+            return { ...state }
+
         default: 
         return state;
     }

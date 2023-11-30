@@ -6,6 +6,12 @@ const projectReducer = (state = {data: null}, action) => {
         case 'FETCH_ALL_PROJECTS':
             return { ...state, data: action.payload };
 
+        case 'DELETE_PROJECT':
+            return { ...state }
+
+        case 'EDIT_PROJECT':
+            return { ...state }
+
         default:
         return state
     }

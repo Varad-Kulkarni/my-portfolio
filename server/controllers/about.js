@@ -1,3 +1,5 @@
+import mongoose from 'mongoose'
+
 import Experience from '../models/experience.js'
 import Education from '../models/education.js'
 import Skills from '../models/skills.js'
@@ -29,6 +31,40 @@ export const getAllExperience = async(req, res) => {
     }
 }
 
+export const deleteExperience = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested experience not found...")
+    }
+
+    try {
+        await Experience.findByIdAndRemove(_id)
+        res.status(200).json('experience deleted successfully...')
+        console.log(`experience of id ${_id} added succesfully...`)
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+export const editExperience = async(req, res) => {
+    const { id:_id } = req.params
+    const { title, company, fromDate, toDate, details } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('experience unavailable...')
+    }
+    
+    try {
+        const updatedExperience = await Experience.findByIdAndUpdate( _id, { $set: { 'title': title, 'company': company, 'fromDate': fromDate, 'toDate': toDate, 'details': details }}, { new: true })
+        res.status(200).json(updatedExperience)
+        console.log('experience updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
+    }
+}
 
 export const addEducation = async(req, res) => {
     const educationData = req.body;
@@ -52,6 +88,41 @@ export const getAllEducation = async(req, res) => {
     catch(err) {
         res.status(400).json({message: err.message})
         console.log(err)
+    }
+}
+
+export const deleteEducation = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested education not found...")
+    }
+
+    try {
+        await Education.findByIdAndRemove(_id)
+        res.status(200).json('education deleted successfully...')
+        console.log(`education of id ${_id} deleted successfully...`)
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+export const editEducation = async(req, res) => {
+    const { id:_id } = req.params
+    const { institute, degree, marks, fromDate, toDate, description } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('education unavailable...')
+    }
+    
+    try {
+        const updatedEducation = await Education.findByIdAndUpdate( _id, { $set: { 'institute': institute, 'degree': degree, 'marks': marks, 'fromDate': fromDate, 'toDate': toDate, 'description': description }}, { new: true })
+        res.status(200).json(updatedEducation)
+        console.log('education updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
     }
 }
 
@@ -81,6 +152,41 @@ export const getAllSkills = async(req, res) => {
     }
 }
 
+export const deleteSkill = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested skill not found...")
+    }
+
+    try {
+        await Skills.findByIdAndRemove(_id)
+        res.status(200).json('skill deleted successfully...')
+        console.log(`skill of id ${_id} deleted successfully...`)
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+export const editSkills = async(req, res) => {
+    const { id:_id } = req.params
+    const { skill } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('experience unavailable...')
+    }
+    
+    try {
+        const updatedSkill = await Skills.findByIdAndUpdate( _id, { $set: { 'skill': skill }}, { new: true })
+        res.status(200).json(updatedSkill)
+        console.log('skill updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
+    }
+}
+
 
 export const addAchievement = async(req, res) => {
     const achievementData = req.body;
@@ -89,7 +195,7 @@ export const addAchievement = async(req, res) => {
     try {
         await achievementValue.save();
         res.status(200).json("Achievement added successfully...");
-        console.log("Achievement added succesfully...")
+        console.log('achievement added successfully...')
     }
     catch(err) {
         console.log(err);
@@ -104,5 +210,40 @@ export const getAllAchievements = async(req, res) => {
     catch(err) {
         res.status(400).json({message: err.message})
         console.log(err)
+    }
+}
+
+export const deleteAchievement = async(req, res) => {
+    const { id:_id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        res.status(404).json("requested achievement not found...")
+    }
+
+    try {
+        await Achievements.findByIdAndRemove(_id)
+        res.status(200).json('achievement deleted successfully...')
+        console.log(`achievement of id ${_id} added succesfully...`)
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+export const editAchievement = async(req, res) => {
+    const { id:_id } = req.params
+    const { achievement } = req.body
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('achievement unavailable...')
+    }
+    
+    try {
+        const updatedAchievement = await Achievements.findByIdAndUpdate( _id, { $set: { 'achievement': achievement }}, { new: true })
+        res.status(200).json(updatedAchievement)
+        console.log('achievement updated successfully...')
+    }
+    catch(error) {
+        res.status(405).send(error)
     }
 }

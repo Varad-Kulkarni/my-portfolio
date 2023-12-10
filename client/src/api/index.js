@@ -26,3 +26,7 @@ export const addProject = (projectData) => API.post('/projects/add', projectData
 export const getAllProjects = () => API.get('/projects/get')
 export const deleteProject = (id) => API.delete(`/projects/delete/${id}`)
 export const editProject = (projectData, id) => API.post(`/projects/edit/${id}`, projectData)
+
+export const logIn = (authData) => API.post('/auth/login', authData);
+export const signUp = (authData) => API.post('/auth/signup', authData);
+export const fetchAllUsers = () => API.get('/auth/getAllUsers')

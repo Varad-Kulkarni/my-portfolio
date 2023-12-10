@@ -1,8 +1,24 @@
-import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentUser } from "../../actions/currentUser";
 
 export default function NavBar() {
     const [navbar, setNavbar] = useState(false);
+
+    const dispatch = useDispatch();
+    let User = useSelector((state) => (state.currentUserReducer));
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' });
+        navigate('/');
+        dispatch(setCurrentUser(null));
+    }
+
+    useEffect(() => {
+        dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
+    }, [dispatch])
 
     return (
         <nav className="w-full bg-purple-500 shadow">
@@ -72,13 +88,13 @@ export default function NavBar() {
 
                         <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                             <Link
-                                to="/"
+                                to="/auth/login"
                                 className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
                             >
                                 Sign in
                             </Link>
                             <Link
-                                to="/"
+                                to="/auth/signup"
                                 className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                             >
                                 Sign up
@@ -86,20 +102,40 @@ export default function NavBar() {
                         </div>
                     </div>
                 </div>
-                <div className="hidden space-x-2 md:inline-block">
-                    <Link
-                        to="/"
-                        className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-                    >
-                        Sign in
-                    </Link>
-                    <Link
-                        to="/"
-                        className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-                    >
-                        Sign up
-                    </Link>
-                </div>
+                {
+                    User === null ? (
+                        <>
+                            <div className="hidden space-x-2 md:inline-block">
+                                <Link
+                                    to="/auth/login"
+                                    className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+                                >
+                                    Sign in
+                                </Link>
+                                <Link
+                                    to="/auth/signup"
+                                    className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                                >
+                                    Sign up
+                                </Link>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="hidden space-x-2 md:inline-block">
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                    {User.result.username.toUpperCase().charAt(0)}
+                                </button>
+                                <Link
+                                    onClick={handleLogout}
+                                    className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                                >
+                                    log out
+                                </Link>
+                            </div>
+                        </>
+                    )
+                }
             </div>
         </nav>
     );

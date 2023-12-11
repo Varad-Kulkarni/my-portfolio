@@ -5,6 +5,7 @@ import { deleteProject } from '../../actions/projects'
 
 const Projects = () => {
   const projects = useSelector(state => state.projectReducer)
+  const User = useSelector((state) => (state.currentUserReducer));
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,12 +15,18 @@ const Projects = () => {
   }
 
   const handleEdit = (type, key) => {
-    navigate('/projects/add', { state: { key, type }})
+    navigate('/projects/add', { state: { key, type } })
   }
 
   return (
     <div>
-      <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/projects/add'>Add</Link></button>
+      {
+        User !== null && (
+          <>
+            <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/projects/add'>Add</Link></button>
+          </>
+        )
+      }
       {
         projects.data === null ? <h1 className="text-3xl">Loading...</h1> :
           <>
@@ -46,8 +53,14 @@ const Projects = () => {
                             <p className="mt-2 text-slate-500 max-w-full overflow-x-auto">
                               <pre>{key.details}</pre>
                             </p>
-                            <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleEdit('ts/add', key)}}>edit</button>
-                            <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => {handleDelete('project', key._id)}}>delete</button>
+                            {
+                              User !== null && (
+                                <>
+                                  <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleEdit('ts/add', key) }}>edit</button>
+                                  <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleDelete('project', key._id) }}>delete</button>
+                                </>
+                              )
+                            }
                           </div>
                         </div>
                       </div>

@@ -7,7 +7,7 @@ export default function NavBar() {
     const [navbar, setNavbar] = useState(false);
 
     const dispatch = useDispatch();
-    let User = useSelector((state) => (state.currentUserReducer));
+    const User = useSelector((state) => (state.currentUserReducer));
     const navigate = useNavigate();
 
     const handleLogout = () => {

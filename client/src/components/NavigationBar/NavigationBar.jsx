@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
+import { jwtDecode } from 'jwt-decode'
+
 import { setCurrentUser } from "../../actions/currentUser";
 
 export default function NavBar() {
@@ -17,6 +19,14 @@ export default function NavBar() {
     }
 
     useEffect(() => {
+        const token = User?.token
+        if (token) {
+            const decodeToken = jwtDecode(token)
+
+            if (decodeToken.exp * 1000 < new Date().getTime()) {
+                handleLogout()
+            }
+        }
         dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
     }, [dispatch])
 

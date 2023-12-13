@@ -21,7 +21,7 @@ const Projects = () => {
   return (
     <div>
       {
-        User !== null && (
+        User !== null && User.result.username === 'maskksam369_varad' && (
           <>
             <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/projects/add'>Add</Link></button>
           </>
@@ -54,7 +54,7 @@ const Projects = () => {
                               <pre>{key.details}</pre>
                             </p>
                             {
-                              User !== null && (
+                              User !== null && User.result.username === 'maskksam369_varad' && (
                                 <>
                                   <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleEdit('ts/add', key) }}>edit</button>
                                   <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleDelete('project', key._id) }}>delete</button>

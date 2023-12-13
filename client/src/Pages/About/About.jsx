@@ -67,7 +67,7 @@ const About = () => {
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Experience
           {
-            User !== null && (
+            User !== null && User.result.username === 'maskksam369_varad' && (
               <button className="bg-sky-700 font-sm hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/experience'> Add </Link></button>
             )
           }
@@ -89,7 +89,7 @@ const About = () => {
                             <pre>{key.details}</pre>
                           </p>
                           {
-                            User !== null && (
+                            User !== null && User.result.username === 'maskksam369_varad' && (
                               <>
                                 <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => handleEdit('experience', key)}>edit</button>
                                 <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleDelete('experience', key._id) }}>delete</button>
@@ -108,7 +108,7 @@ const About = () => {
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Education
           {
-            User !== null && (
+            User !== null && User.result.username === 'maskksam369_varad' && (
               <>
                 <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/education'> Add </Link></button>
               </>
@@ -136,7 +136,7 @@ const About = () => {
                             </pre>
                           </p>
                           {
-                            User !== null && (
+                            User !== null && User.result.username === 'maskksam369_varad' && (
                               <>
                                 <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleEdit('education', key) }}>edit</button>
                                 <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleDelete('education', key._id) }}>delete</button>
@@ -155,7 +155,7 @@ const About = () => {
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Skills
           {
-            User !== null && (
+            User !== null && User.result.username === 'maskksam369_varad' && (
               <>
                 <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/skills'> Add </Link></button>
               </>
@@ -174,7 +174,7 @@ const About = () => {
                           <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">
                             {key.skill}
                             {
-                              User !== null && (
+                              User !== null && User.result.username === 'maskksam369_varad' && (
                                 <>
                                   <button className='bg-gray-700 hover:bg-gray-900 text-white mx-1 px-1 rounded-full' onClick={() => { handleEdit('skills', key) }}>e</button>
                                   <button className='bg-red-700 hover:bg-red-900 text-white mx-1 px-1 rounded-full' onClick={() => { handleDelete('skill', key._id) }}>-</button>
@@ -194,7 +194,7 @@ const About = () => {
         <h4 class="text-3xl font-normal leading-normal mt-4 bg-gray-200 mb-2 p-5 text-zinc-800">
           Achievements
           {
-            User !== null && (
+            User !== null && User.result.username === 'maskksam369_varad' && (
               <>
                 <button className="bg-sky-700 hover:bg-sky-900 text-white mx-3 px-2 rounded-full"><Link to='/about/achievements'> Add </Link></button>
               </>
@@ -213,7 +213,7 @@ const About = () => {
                           <div className="p-2 rounded-2xl bg-purple-200 font-bold m-2">
                             {key.achievement}
                             {
-                              User !== null && (
+                              User !== null && User.result.username === 'maskksam369_varad' && (
                                 <>
                                   <button className='bg-gray-700 hover:bg-gray-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleEdit('achievements', key) }}>edit</button>
                                   <button className='bg-red-700 hover:bg-red-900 text-white mx-3 px-2 rounded-full' onClick={() => { handleDelete('achievement', key._id) }}>delete</button>

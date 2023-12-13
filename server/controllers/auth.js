@@ -34,7 +34,6 @@ export const login = async (req, res) => {
 
         const isPasswordCrt = await bcrypt.compare(password, existinguser.password)
         if(!isPasswordCrt){
-            console.log(password + " | " + existinguser.password)
             console.log('invalid password entered...login attempt failed')
             return res.status(400).json({message : "Invalid credentials"})
         }
